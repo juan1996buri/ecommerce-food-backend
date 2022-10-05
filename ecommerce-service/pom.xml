@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ecommerce</groupId>
+		<artifactId>ecommerce</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.ecommerce.service</groupId>
+	<artifactId>ecommerce-service</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>com.ecommerce.common</groupId>
+			<artifactId>ecommerce-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ecommerce.repository</groupId>
+			<artifactId>ecommerce-repository</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ecommerce.dto</groupId>
+			<artifactId>ecommerce-dto</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+</project>
