@@ -3,15 +3,11 @@ package com.ecommerce.dto;
 import lombok.Data;
 
 @Data
-public class OrdenDetalleDTO {
-
-	private long id;
-
-	private OrdenDTO orden;
-
-	private EspecificacionProductoDTO especificacionProducto;
-
-	private double precio;
+public class SliderDTO {
 	
-	private int cantidad;
+	private long id;
+	
+	private EspecificacionProductoDTO especificacionProducto;
+	
+	private String descipcion;
 }

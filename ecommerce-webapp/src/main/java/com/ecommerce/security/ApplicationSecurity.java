@@ -58,7 +58,7 @@ public class ApplicationSecurity {
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 		http.authorizeRequests()
-				.antMatchers("/user/**","/categoria/**")
+				.antMatchers("/usuario/**","/categoria/**","/cliente/**","/producto/**","/productoDetalle/**")
 				.permitAll().anyRequest().authenticated();
 
 		http.exceptionHandling().authenticationEntryPoint((request, response, ex) -> {

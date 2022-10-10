@@ -13,8 +13,8 @@ public class UsuarioDTO {
 
 	private String password;
 
-	//private LocalDateTime fechaRegistro;
+	private LocalDateTime fechaRegistro;
 
-	//private RolesDTO roles;
+	private RolesDTO roles;
 
 }

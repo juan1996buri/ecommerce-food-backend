@@ -17,34 +17,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.common.dto.ApiResponseDTO;
-import com.ecommerce.domain.Cliente;
-import com.ecommerce.dto.ClienteDTO;
-import com.ecommerce.service.controller.ClienteService;
+import com.ecommerce.domain.EspecificacionProducto;
+import com.ecommerce.dto.EspecificacionProductoDTO;
+import com.ecommerce.service.controller.ProductoDetalleService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/cliente")
-public class ClienteController {
+@RequestMapping("/productoDetalle")
+public class ProductoDetalleController {
 
 	@Autowired
-	private ClienteService service;
+	private ProductoDetalleService service;
 
 	@PostMapping
-	public ResponseEntity<Object> save(@RequestBody ClienteDTO dto) {
+	public ResponseEntity<Object> save(@RequestBody EspecificacionProductoDTO dto) {
 		return new ResponseEntity<>(new ApiResponseDTO<>(true, service.save(dto)), HttpStatus.CREATED);
 	}
 
 	@PutMapping
-	public ResponseEntity<Object> update(@RequestBody ClienteDTO dto) {
+	public ResponseEntity<Object> update(@RequestBody EspecificacionProductoDTO dto) {
 		service.update(dto);
 		return new ResponseEntity<>(new ApiResponseDTO<>(true, null), HttpStatus.CREATED);
 	}
 
 	@GetMapping
 	public ResponseEntity<Object> findAll() {
-		List<ClienteDTO> list = service.findAll(new ClienteDTO());
+		List<EspecificacionProductoDTO> list = service.findAll(new EspecificacionProductoDTO());
 		if (!list.isEmpty()) {
-			ApiResponseDTO<List<ClienteDTO>> response = new ApiResponseDTO<>(true, list);
+			ApiResponseDTO<List<EspecificacionProductoDTO>> response = new ApiResponseDTO<>(true, list);
 			return (new ResponseEntity<Object>(response, HttpStatus.OK));
 		} else {
 			return new ResponseEntity<>(new ApiResponseDTO<>(false, null), HttpStatus.NOT_FOUND);
@@ -53,11 +53,11 @@ public class ClienteController {
 
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<Object> find(@PathVariable long id) {
-		ClienteDTO dto = new ClienteDTO();
+		EspecificacionProductoDTO dto = new EspecificacionProductoDTO();
 		dto.setId(id);
-		Optional<Cliente> test = service.find(dto);
+		Optional<EspecificacionProducto> test = service.find(dto);
 		if (test.isPresent()) {
-			ApiResponseDTO<Cliente> response = new ApiResponseDTO<>(true, test.get());
+			ApiResponseDTO<EspecificacionProducto> response = new ApiResponseDTO<>(true, test.get());
 			return (new ResponseEntity<Object>(response, HttpStatus.OK));
 		} else {
 			return new ResponseEntity<>(new ApiResponseDTO<>(false, null), HttpStatus.NOT_FOUND);
@@ -66,7 +66,7 @@ public class ClienteController {
 
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<Object> delete(@PathVariable long id) {
-		ClienteDTO dto = new ClienteDTO();
+		EspecificacionProductoDTO dto = new EspecificacionProductoDTO();
 		dto.setId(id);
 		service.delete(dto);
 		return new ResponseEntity<>(new ApiResponseDTO<>(true, null), HttpStatus.OK);

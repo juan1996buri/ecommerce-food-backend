@@ -10,4 +10,6 @@ public class ClienteDTO {
 	private String nombre;
 	
 	private String apellido;
+	
+	private UsuarioDTO usuario;
 }

@@ -1,5 +1,6 @@
 package com.ecommerce.app.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ import com.ecommerce.service.controller.UsuarioService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/usuario")
 public class UsuarioController {
 
 	@Autowired
@@ -43,13 +44,13 @@ public class UsuarioController {
 
 	@PostMapping("/registrar")
 	public ResponseEntity<Object> save(@RequestBody UsuarioDTO dto) {
-		System.err.println("111111111111"+dto);
-		//RolesDTO role = new RolesDTO();
-		//role.setId(2);
-		//dto.setRoles(role);
-		//dto.setPassword(passwordEncoder.encode(dto.getPassword()));
-		//service.save(dto);
-		return new ResponseEntity<>(new ApiResponseDTO<>(true, dto), HttpStatus.CREATED);
+		RolesDTO role = new RolesDTO();
+		role.setId(2);
+		dto.setRoles(role);
+		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+		dto.setFechaRegistro(LocalDateTime.now());
+		service.save(dto);
+		return new ResponseEntity<>(new ApiResponseDTO<>(true, null), HttpStatus.CREATED);
 	}
 
 	@GetMapping
@@ -70,7 +71,10 @@ public class UsuarioController {
 			String token = jwUtil.generateAccessToken(user);
 			userLogin.setPassword("");
 			userLogin.setToken(token);
-			// userLogin.setRoles(user.getRoles());
+			RolesDTO rolesDTO=new RolesDTO();
+			rolesDTO.setId(user.getRoles().getId());
+			rolesDTO.setNombre(user.getRoles().getNombre());
+			userLogin.setRoles(rolesDTO);
 			return new ResponseEntity<>(new ApiResponseDTO<>(true, userLogin), HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

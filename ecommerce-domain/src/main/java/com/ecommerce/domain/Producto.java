@@ -25,14 +25,8 @@ public class Producto {
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 
-	@Column()
-	private String nombre;
-
-	@Column()
-	private double precio;
-
-	@Column()
-	private int stock;
+	@Column(unique = true)
+	private String nombre;	
 
 	@Lob
 	@Column(columnDefinition = "LONGBLOB")

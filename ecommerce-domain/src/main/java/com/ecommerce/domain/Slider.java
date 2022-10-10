@@ -13,24 +13,17 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "orden_detalle")
-public class OrdenDetalle {
-
+@Table(name = "slider")
+public class Slider {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
-	@ManyToOne
-	@JoinColumn(name = "orden_id")
-	private Orden orden;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "especificacion_producto_id")
 	private EspecificacionProducto especificacionProducto;
-
+	
 	@Column
-	private double precio;
-
-	@Column
-	private int cantidad;
+	private String descripcion;
+	
 }

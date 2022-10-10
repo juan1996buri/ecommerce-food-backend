@@ -17,34 +17,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.common.dto.ApiResponseDTO;
-import com.ecommerce.domain.Cliente;
-import com.ecommerce.dto.ClienteDTO;
-import com.ecommerce.service.controller.ClienteService;
+import com.ecommerce.domain.Slider;
+import com.ecommerce.dto.SliderDTO;
+import com.ecommerce.service.controller.SliderService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/cliente")
-public class ClienteController {
+@RequestMapping("/slider")
+public class SliderController {
 
 	@Autowired
-	private ClienteService service;
+	private SliderService service;
 
 	@PostMapping
-	public ResponseEntity<Object> save(@RequestBody ClienteDTO dto) {
+	public ResponseEntity<Object> save(@RequestBody SliderDTO dto) {
 		return new ResponseEntity<>(new ApiResponseDTO<>(true, service.save(dto)), HttpStatus.CREATED);
 	}
 
 	@PutMapping
-	public ResponseEntity<Object> update(@RequestBody ClienteDTO dto) {
+	public ResponseEntity<Object> update(@RequestBody SliderDTO dto) {
 		service.update(dto);
 		return new ResponseEntity<>(new ApiResponseDTO<>(true, null), HttpStatus.CREATED);
 	}
 
 	@GetMapping
 	public ResponseEntity<Object> findAll() {
-		List<ClienteDTO> list = service.findAll(new ClienteDTO());
+		List<SliderDTO> list = service.findAll(new SliderDTO());
 		if (!list.isEmpty()) {
-			ApiResponseDTO<List<ClienteDTO>> response = new ApiResponseDTO<>(true, list);
+			ApiResponseDTO<List<SliderDTO>> response = new ApiResponseDTO<>(true, list);
 			return (new ResponseEntity<Object>(response, HttpStatus.OK));
 		} else {
 			return new ResponseEntity<>(new ApiResponseDTO<>(false, null), HttpStatus.NOT_FOUND);
@@ -53,11 +53,11 @@ public class ClienteController {
 
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<Object> find(@PathVariable long id) {
-		ClienteDTO dto = new ClienteDTO();
+		SliderDTO dto = new SliderDTO();
 		dto.setId(id);
-		Optional<Cliente> test = service.find(dto);
+		Optional<Slider> test = service.find(dto);
 		if (test.isPresent()) {
-			ApiResponseDTO<Cliente> response = new ApiResponseDTO<>(true, test.get());
+			ApiResponseDTO<Slider> response = new ApiResponseDTO<>(true, test.get());
 			return (new ResponseEntity<Object>(response, HttpStatus.OK));
 		} else {
 			return new ResponseEntity<>(new ApiResponseDTO<>(false, null), HttpStatus.NOT_FOUND);
@@ -66,7 +66,7 @@ public class ClienteController {
 
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<Object> delete(@PathVariable long id) {
-		ClienteDTO dto = new ClienteDTO();
+		SliderDTO dto = new SliderDTO();
 		dto.setId(id);
 		service.delete(dto);
 		return new ResponseEntity<>(new ApiResponseDTO<>(true, null), HttpStatus.OK);
